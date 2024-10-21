@@ -67,7 +67,7 @@ const HeaderOption = styled.li`
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-family: "Osvald";
+  font-family: "Oswald";
   &:hover {
     cursor: pointer;
     color: ${({ theme }) => theme.colors.primary};
