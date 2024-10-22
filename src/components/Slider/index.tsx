@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 type SliderProps = {
-  componentList: React.ReactNode[];
+  children: React.ReactNode;
 };
 
 const Div = styled.div`
@@ -14,9 +14,9 @@ const Div = styled.div`
   justify-content: center;
 `;
 
-const Slider: React.FC<SliderProps> = ({ componentList }) => {
+const Slider: React.FC<SliderProps> = ({ children }) => {
   const divRef = useRef<HTMLDivElement>(null);
-  return <Div ref={divRef}>{componentList}</Div>;
+  return <Div ref={divRef}>{children}</Div>;
 };
 
 export default Slider;
