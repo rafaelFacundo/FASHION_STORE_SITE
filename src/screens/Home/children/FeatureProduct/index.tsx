@@ -9,7 +9,6 @@ type FeatureProductProps = {
   title: string;
   name: string;
   description: string;
-  price: string;
   productId: string;
   image: string;
 };
@@ -21,41 +20,111 @@ const Div = styled.div`
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
+
+  position: relative;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 `;
 
 const ProductInfoDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  //justify-content: flex-start;
   flex-direction: column;
   height: 80%;
-  width: 50%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 80%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    max-width: 50%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    max-width: 50%;
+  }
 `;
-const ProductInfoText = styled.div``;
-const ImageDiv = styled.div``;
+const ProductInfoText = styled.div`
+  & > * {
+    margin-top: 10px;
+  }
+`;
+const ImageDiv = styled.div`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    max-width: 40%;
+    height: 60%;
+    align-self: flex-end;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    max-width: 50%;
+    height: 70%;
+    align-self: flex-end;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    max-width: 50%;
+    height: 100%;
+    align-self: center;
+  }
+`;
 const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 50%;
   height: 50px;
+  margin-top: 35px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 80%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    max-width: 50%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    max-width: 50%;
+  }
 `;
 const ButtonContentDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
   padding: 15px;
 `;
 const ArrowButtonDiv = styled.div`
-  height: 100%;
+  height: 80%;
   width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    transform: rotate(180deg);
+  }
 `;
 
 const FeatureProduct: React.FC<FeatureProductProps> = ({
   title,
   name,
   description,
-  price,
   productId,
   image,
 }) => {
@@ -63,19 +132,22 @@ const FeatureProduct: React.FC<FeatureProductProps> = ({
     <Div>
       <ProductInfoDiv>
         <ProductInfoText>
-          <Typography align="left">{title}</Typography>
-          <Typography variant="h1" align="left">
+          <Typography variant="subTitle" align="left" color="white">
+            {title}
+          </Typography>
+          <Typography variant="h1" align="left" color="#363636">
             {name}
           </Typography>
-          <Typography align="left">{description}</Typography>
-          <Typography align="left">{price}</Typography>
+          <Typography variant="description" align="left">
+            {description}
+          </Typography>
         </ProductInfoText>
         <ButtonDiv>
           <GeneralButton>
             <ButtonContentDiv>
               <Typography>Saiba mais</Typography>
               <ArrowButtonDiv>
-                <Arrow />
+                <Arrow styles={{ width: "100%", height: "100%" }} />
               </ArrowButtonDiv>
             </ButtonContentDiv>
           </GeneralButton>

@@ -19,7 +19,12 @@ const Div = styled.div`
 const FeatureProductsDiv = styled.div`
   width: 100%;
   height: 90vh;
-  background: linear-gradient(135deg, #00b4db 10%, #ff6a88 40%, #f0f4c3 80%);
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primaryTwo} 10%,
+    ${({ theme }) => theme.colors.primary} 40%,
+    ${({ theme }) => theme.colors.primaryThree} 80%
+  );
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -29,10 +34,10 @@ const FeatureProductsDiv = styled.div`
 const Home: React.FC = () => {
   const products = [
     {
-      title: "teSTe 1",
-      name: "NOME DE TESTE",
-      description: "UMA DESCRITÇÂO DE TESTE",
-      price: "39,90",
+      title: "VERÃO FEMININO",
+      name: "VESTIDO FLORAL DE VERÃO",
+      description:
+        "Confeccionado em algodão leve, ideal para dias quentes. Disponível nas cores azul, rosa e verde.",
       productId: "alskdjalskdj",
       image: teste1,
     },
@@ -40,7 +45,6 @@ const Home: React.FC = () => {
       title: "teSTe 2",
       name: "NOME DE TESTE 2",
       description: "UMA DESCRITÇÂO DE TESTE 2",
-      price: "239,90",
       productId: "alskdjaasdasdasdasdasdslskdj",
       image: teste2,
     },
@@ -54,7 +58,6 @@ const Home: React.FC = () => {
             title={product.title}
             name={product.name}
             description={product.description}
-            price={product.price}
             productId={product.productId}
             image={product.image}
           />

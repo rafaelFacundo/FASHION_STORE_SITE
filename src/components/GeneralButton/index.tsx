@@ -15,6 +15,11 @@ const Button = styled.button`
   border-radius: 50px;
   color: ${({ theme }) => theme.colors.primary};
   border: 6px solid ${({ theme }) => theme.colors.primaryTwo};
+  background: white;
+  &:hover {
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 const GeneralButton: React.FC<GeneralButtonProps> = ({ children }) => {
