@@ -53,15 +53,17 @@ const Home: React.FC = () => {
   return (
     <Div>
       <FeatureProductsDiv>
-        {products.map((product) => (
-          <FeatureProduct
-            title={product.title}
-            name={product.name}
-            description={product.description}
-            productId={product.productId}
-            image={product.image}
-          />
-        ))}
+        <Slider>
+          {products.map((product) => (
+            <FeatureProduct
+              title={product.title}
+              name={product.name}
+              description={product.description}
+              productId={product.productId}
+              image={product.image}
+            />
+          ))}
+        </Slider>
       </FeatureProductsDiv>
     </Div>
   );
