@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Arrow from "components/svgLogos/Arrow";
 import GeneralButton from "components/GeneralButton";
@@ -24,21 +24,8 @@ const ButtonsDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 100px;
-    height: 50px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 200px;
-    height: 50px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 300px;
-    height: 50px;
-  }
+  width: 100px;
+  height: 100px;
 `;
 const ButtonDiv = styled.div`
   width: 40%;
@@ -46,18 +33,61 @@ const ButtonDiv = styled.div`
 
 const Slider: React.FC<SliderProps> = ({ children }) => {
   const divRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {}, []);
+  const [doesTheSliderHaveAnOverflow, setDoesTheSliderHaveAnOverflow] =
+    useState(false);
+  useEffect(() => {
+    const elementToObserve = divRef.current;
+
+    if (!elementToObserve) return;
+
+    const handleSize = () => {
+      if (elementToObserve.scrollWidth > elementToObserve.clientWidth) {
+        setDoesTheSliderHaveAnOverflow(true);
+      } else {
+        setDoesTheSliderHaveAnOverflow(false);
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(() => handleSize);
+
+    resizeObserver.observe(elementToObserve);
+
+    return () => {
+      if (elementToObserve) {
+        resizeObserver.unobserve(elementToObserve);
+      }
+    };
+  }, []);
+
+  const handleScrollLeft = () => {
+    if (divRef.current) {
+      divRef.current.scrollBy({
+        left: -divRef.current.clientWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (divRef.current) {
+      divRef.current.scrollBy({
+        left: divRef.current.clientWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <Div ref={divRef}>
-      {children}
+    <>
+      <Div ref={divRef}>{children}</Div>
       <ButtonsDiv>
         <ButtonDiv>
-          <GeneralButton>
+          <GeneralButton onClick={handleScrollLeft}>
             <Arrow styles={{ width: "50%", height: "50%" }} />
           </GeneralButton>
         </ButtonDiv>
         <ButtonDiv>
-          <GeneralButton>
+          <GeneralButton onClick={handleScrollRight}>
             <Arrow
               styles={{
                 width: "50%",
@@ -68,7 +98,7 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
           </GeneralButton>
         </ButtonDiv>
       </ButtonsDiv>
-    </Div>
+    </>
   );
 };
 

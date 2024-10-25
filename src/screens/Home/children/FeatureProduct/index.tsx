@@ -64,7 +64,7 @@ const ProductInfoText = styled.div`
 `;
 const ImageDiv = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    max-width: 40%;
+    max-width: 50%;
     height: 60%;
     align-self: flex-end;
     position: absolute;

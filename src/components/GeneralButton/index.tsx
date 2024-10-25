@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 type GeneralButtonProps = {
   children: React.ReactNode | string;
+  onClick?: () => void;
 };
 
 const Button = styled.button`
@@ -22,8 +23,8 @@ const Button = styled.button`
   }
 `;
 
-const GeneralButton: React.FC<GeneralButtonProps> = ({ children }) => {
-  return <Button>{children}</Button>;
+const GeneralButton: React.FC<GeneralButtonProps> = ({ children, onClick }) => {
+  return <Button onClick={onClick}>{children}</Button>;
 };
 
 export default GeneralButton;
