@@ -17,7 +17,7 @@ const Arrow: React.FC<ArrowProps> = ({ styles }) => {
       <path
         d="M93.25 4.84711L10 68.5L93.25 132.153"
         stroke="black"
-        stroke-width="11"
+        strokeWidth="11"
       />
     </svg>
   );
