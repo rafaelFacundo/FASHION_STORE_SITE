@@ -7,14 +7,23 @@ type SliderProps = {
   children: React.ReactNode;
 };
 
-const Div = styled.div`
+const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
+`;
+
+const SliderDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const ButtonsDiv = styled.div`
@@ -78,8 +87,8 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
   };
 
   return (
-    <>
-      <Div ref={divRef}>{children}</Div>
+    <Container>
+      <SliderDiv ref={divRef}>{children}</SliderDiv>
       <ButtonsDiv>
         <ButtonDiv>
           <GeneralButton onClick={handleScrollLeft}>
@@ -98,7 +107,7 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
           </GeneralButton>
         </ButtonDiv>
       </ButtonsDiv>
-    </>
+    </Container>
   );
 };
 

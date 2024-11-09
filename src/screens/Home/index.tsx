@@ -7,6 +7,8 @@ import teste1 from "assets/images/teste1.png";
 import teste2 from "assets/images/teste2.png";
 
 import Typography from "styles/typography";
+import ProductsList from "components/ProductsList";
+import ProductCard from "components/ProductCard";
 
 const Div = styled.div`
   width: 100%;
@@ -50,6 +52,15 @@ const Home: React.FC = () => {
     },
   ];
 
+  const listOfProducts1 = products.map((product) => (
+    <ProductCard
+      id="saldkasd"
+      image={product.image}
+      price={"30.00"}
+      title={product.title}
+    />
+  ));
+
   return (
     <Div>
       <FeatureProductsDiv>
@@ -65,6 +76,8 @@ const Home: React.FC = () => {
           ))}
         </Slider>
       </FeatureProductsDiv>
+      <ProductsList title="produtos em promoção" listOfProducts={products} />
+      <ProductsList title="Ultimas peças" listOfProducts={products} />
     </Div>
   );
 };
